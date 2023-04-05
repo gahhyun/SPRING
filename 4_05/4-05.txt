@@ -1,0 +1,11 @@
+페이지에서 페이지로 넘어갈때 name 속성
+
+border: 1px solid #33ff33;
+
+autofocus
+
+label / input 세트
+
+여러정보를 빈을 묶어서 데이터베이스로 넘긴다
+(class로) dto
+db에 컬럼명으로 그대로 저장
