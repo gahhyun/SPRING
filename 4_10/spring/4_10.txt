@@ -1,0 +1,6 @@
+https://developer.mozilla.org/ko/docs/Glossary/DOM
+
+https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Template_literals
+
+유효성 체크
+https://blog.naver.com/drv983/223061921905
