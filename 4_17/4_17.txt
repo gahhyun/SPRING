@@ -1,0 +1,13 @@
+https://velog.io/@gillog/Spring-DIDependency-Injection
+https://velog.io/@gillog/a-j5c0h49n#%E2%99%82%EF%B8%8F-%EC%B0%B8%EA%B3%A0%EC%82%AC%EC%9D%B4%ED%8A%B8-%E2%99%82%EF%B8%8F
+
+https://velog.io/@syveloper/Spring-Core-%EC%8A%A4%ED%94%84%EB%A7%81-%EC%BD%94%EC%96%B4
+
+bean은 클래스
+bran에 대한 정보는 context가 가지고 있음
+https://velog.io/@seculoper235/Spring-Core-Context-1%ED%8E%B8
+
+IOC 컨테이너 = core 컨테이너  = 스프링 컨테이너
+
+spring관련 블로그
+https://velog.io/@seculoper235?tag=Spring-%EA%B0%9C%EC%9A%94
