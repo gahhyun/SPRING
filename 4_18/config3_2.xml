@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+
+	<!-- 개수만큼 다 오버로드 해줘야 한다 -->
+	<bean id="car" class="com.earth.rod3.Car">
+		<constructor-arg name="color" value="white" />
+		<constructor-arg name="oil" value="300"/>
+		<constructor-arg name="engine" ref="engine"/>
+		<constructor-arg name="doors">
+			<array value-type="com.earth.rod3.Door">
+				<ref bean="door"/>
+				<ref bean="door"/>
+			</array>
+		</constructor-arg>
+	</bean>
+
+	<bean id="engine" class="com.earth.rod3.Engine"/>
+	<bean id="door" class="com.earth.rod3.Door" scope="prototype"/>
+</beans>

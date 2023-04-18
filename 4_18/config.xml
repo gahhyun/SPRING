@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+
+	<bean id="car" class="com.earth.rod.Car" scope="prototype" />
+	<bean id="engine"  class="com.earth.rod.Engine" />
+	<bean id="door"  class="com.earth.rod.Door" />
+	
+	<!-- 
+		Scope (Bean을 생성하는 규칙)
+		
+        -singleton : 컨테이너에 단일로 생성 (default)
+        <bean id="car" class="com.earth.rod.Car" scope="singleton" />
+
+        -prototype : 작업시마다 Bean을  새로 생성하고 싶은 경우
+        <bean id="car" class="com.earth.rod.Car" scope="prototype" />
+
+        -request   : http요청마다 새롭게 Bean을 생성하고 싶은 경우
+        <bean id="car" class="com.earth.rod.Car" scope="request" />
+	 -->
+
+</beans>
