@@ -1,6 +1,8 @@
-package com.earth.rod5;
+package com.earth.rod6;
 
 import java.util.Arrays;
+
+import javax.annotation.Resource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -21,8 +23,7 @@ class Car {
 	@Value("blue") private String color;
 	@Value("500") private int oil;
 	
-	@Autowired 
-	@Qualifier("superEngine")
+	@Resource(name = "turboEngine")
 	private Engine engine;	//@Autowired : 의존성 주입(DI) - 사용할 객체를 외부에서 주입하는 것. 자동지정함
 	
 	@Autowired private Door[] doors;
@@ -68,7 +69,7 @@ class Car {
 public class SpringDITest {
 	public static void main(String[] args) {
 		
-		ApplicationContext ac = new GenericXmlApplicationContext("config5.xml");
+		ApplicationContext ac = new GenericXmlApplicationContext("config6.xml");
 		
 		Car car = (Car)ac.getBean("car");
 		Engine engine = (Engine)ac.getBean("engine");
