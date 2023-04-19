@@ -1,0 +1,84 @@
+﻿1. 웹 프로그래밍
+    1) FrontEnd : 클라이언트 중심의 프로그래밍( HTML, CSS, JS) 영역
+    2) BackEnd  : 서버를 구성하며 서비스를 제공하기 위한 서버쪽 프로그래밍 영역
+
+2. 백엔드 중심 개발
+    1) 전통적인 웹 개발 모델
+    2) 서버에서 모든 것을 담당하는 방식임
+    3) 특히 자바 서블릿/JSP가 가장 인기 있는 백엔드 개발 기술임
+    4) 장점
+        -서비스 연동에 필요한 다양한 서버 환경에 대응할 수 있음
+        -기술이 안정적이고 검증됨
+        -기존에 개발된 시스템이 많고 레거시 시스템은 오랫동안 유지됨
+    5) 단점
+        -서버에 화면 갱신의 과도한 요청이 발생시 문제가 될 수 있음
+        -기존의 대규모 구축된 모노리티 아키텍처 방식으로 서버가 적용이 됨
+            => MSA(MICRO SERVICE ARCHITECTURE) 방식이 확산되고 있음
+
+3. 프론트엔드 중심 개발
+
+4. Web 
+    1) URI (Uniform Resource Identifier)
+        -리소스 식별자
+        -모든 정보에 접근 할 수 있는 정보
+        -특정 사이트
+        -특정 쇼핑 목록
+        -동영상 목록
+
+    2) HTML (Hyper Text Markup Larguage)
+        -하이퍼미디어 포맷
+        -XML을 바탕으로한 병용 문서 포맷
+        -이를 이용하여 chrome, safari, firefox에서 사용자가 알아보기 쉬운 형태로 표현
+
+    3) HTTP (Hyper Text Transfer Protocol)
+        -웹 애플리케이션 컨트롤
+        -GET (디폴트)
+        -POST
+        -PUT
+        -DELETE
+
+5. HTTP / HTTPS (HTTP Secure)
+        1) RFC 2616에서 규정된 WEB에서 데이터를 주고 받은 프로토폴
+        2) 이름에는 하이퍼텍스트 전송용 프로토콜로 정의되어 있지만 실제로는
+            HTML, XML, JSON, Image, Voice, Video, Javascript, PDF등 
+            다양한 컴퓨터에서 다룰 수 있는 것은 모두 전송가능
+        3) TCP를 기반으로한 REST의 특징을 모두 구현하고 있는 WEB 기반의 프로토콜
+        4) www에서 웹 서버와 사용자 사이의 통신을 위해 사용하는 통신 프로토콜임
+        5) 사용자가 요청하면 웹 서버가 응답하는 단순한 구조의 프로토콜임
+
+        Client                           Server
+        ------                           ------
+        요청 메시지 작성     request      요청대기
+        요청 메시지 전송    ========>     요청 메시지 수신, 요청메시지 해석
+        응답 대기                         요청 메시지 해석
+
+                           response      애플리케이션 할당
+                        <===========     애플리케이션 로직
+        응답 메시지 수신                  응답 메시지 송신
+        응답 메시지 해석
+        데이터 표시 및 처리
+
+              getServerName()   getContextPath()       getQueryString()
+                -----------     -----             -----------------------
+        4) http://localhost:8080/day/getdayofweek?year=2023&month=04&day=1 (get방식=디폴트)
+           -----            ----     -------------
+        getScheme()   getServerPort()   getServletPath()
+
+        URIday = /day/getdayofweek 
+        URL = http://localhost:8080/day/getdayofweek?year 
+
+        //getParameter()
+         name      name     name
+         ----      ----     ---
+        ?year=2023&month=04&day=1 (클라이언트의 요청) //쿼리스트링
+              ----       --    --
+              value       value
+
+         //getParameterValues() : 파라미터 값이 같을 경우
+         //getParameterName() : Enumeration 으로 리턴
+         //getParameterMap : 키-벨류 형식
+        name      name     name
+         ----      ----     ---
+        ?year=2023&year=04&year=1 
+              ----       --    --
+              value       value

@@ -1,0 +1,75 @@
+﻿1. 프로토콜 (Protocol)
+    1) 서로 간의 통신을 위한 약속, 규칙
+    2) 주고 받을 데이터에 대한 형식을 정의한 것
+
+2. HTTP 특징
+    1) 단순하고 읽기 쉬움
+        -텍스트 기반의 프로토콜
+    2) 상태를 유지하지 않음 (stateless)
+        -클라이언트 정보를 저장하지 않음
+    3) 확장 가능함
+        -커스텀 헤더(header) 추가 기능
+    
+    4) 예
+        편지                                                HTTP 응답 메시지
+        -------------------------------------------------------------------
+
+        받는사람 이순신                                       HTTP/1.1  200  ok
+        서울 강남구 강남대로 464  <==   헤더   ==>             Content-length : 1024
+        080-500-0456                                         Content-Type : text/html
+        친해하는 신사임당                                      Date : thurs, 23, march 2023
+        안녕하세여,,,
+        .........
+        .........               <==   바디  ==>              <html>
+        .........                                            <head>       
+                                                             </head>
+        당신의 벗.                                            <bady>
+                                                                    <img />
+                                                             </bady>  
+                                                             <html> 
+
+3. 상태 코드 (status code)
+    1) 1XX
+        -처리 중
+    2) 2XX
+        -성공
+        -요청의 성공
+    3) 3XX
+        -리다이렉트
+        -다른 리소스로 리다이렉트
+            -해당 코드를 받았을 때는 response의 새로운 주소로 다시 요청
+    4) 4XX
+        -클라이언트 에러
+        -클라이언트의 요청에 에러가 있는 상태
+            -재전송하여도 에러가 해결되지 않음
+    5) 5XX
+        -서버 에러
+        -서버 처리중 에러가 발생한 상태
+            -재전송시 에러가 해결 되었을 수도 있음
+
+
+4. 요청 메서드
+    1) GET (디폴트)
+        -서버의 리소스을 가져오기 위해 설계
+        -QUERY STRING을 통해 데이터를 전달(소용량)
+        -URL에 데이터 노출되므로 보안에 취약
+        -데이터 공유에 유리
+        -EX) 검색엔진에서 검색단어 전송에 이용
+    2) POST
+        -서버에 데이터를 올리기 위해 설계됨
+        -전송 데이터 크기의 제한이 없음(대용량)
+        -데이터를 요청 메시지의 BADY에 담아 전송
+        -보안에 유리, 데이터 공유에는 불리
+        -EX) 게시판에 글쓰기, 로그인, 회원가입
+
+
+5. MIME (Multipurpose Internet Mail Extensions)
+    1) 텍스트 기반 프로토콜에 바이너리 데이터를 전송하기 위해 고안
+    2) HTTP의 Content-Type 헤더에 사용
+    3) 데이터 타입을 명시
+    4) 타입
+         text    텍스트를 포함하는 모든 문서 text/plain, text/html, text/css, text/javascript
+        Image   모든 종류의 이미지          image/bmp, image.webp
+        audio   모든 종류의 오디오 파일     audio/midi, audio/mpeg, audio/wav
+        video   모든 종류의 비디오 파일     video/webm, video/ogg
+        application 모든 종류의 이진 데이터 application/xml, application/pdf

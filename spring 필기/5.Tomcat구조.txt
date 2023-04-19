@@ -1,0 +1,15 @@
+1. 내부 구조
+    1) Server (Tomcat)
+        -> Service -> Connector -> Engine(Catalina) 
+        -> Host : localhost -> context(스프링 프로젝트) : ex : /moon (유니크해야함)
+        -> servlet : /rollDice (컨트롤러)
+
+2. 설정 파일
+    1) Tomcat 서버 설정 파일
+        - C:\톰캣설치경로\conf\server.xml
+    2) Tomcat의 모든 web app의 공통 설정
+        -C:\톰캣설치경로\conf\web.xml
+            -서블릿 등록   => @Controller
+            -URL 연결     => @RequestMapping
+    3) web app의 개념 설정(context(프로젝트)마다 하나씩 읽음)
+        -webapp\WEB-INF\web.xml
