@@ -1,0 +1,77 @@
+@charset "UTF-8";
+*{
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;	
+	background: #202020;
+}
+
+a{
+	text-decoration: none;
+}
+
+ul{
+	list-style-type: none;
+	height: 48px;
+	width: 100%;
+	background-color: #202020;
+	display: flex;
+}
+
+ul > li {
+	height: 45px;
+	width: 90px;
+	display: flex;
+	align-items: center; 
+}
+
+ul > li > a {
+	color: #33ff33;
+	margin: auto;
+	padding: 10px;
+	font-size: 20px;
+	align-items: center;
+}
+
+ul > li > a:hover {
+	color: yellow;
+	border-bottom: 3px solid rgb(209,209,209);
+}
+
+#logo{
+	font-size: 30px;
+	padding-left: 40px;
+	margin-right: auto;
+	display: flex;
+	color: #33FF33;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
