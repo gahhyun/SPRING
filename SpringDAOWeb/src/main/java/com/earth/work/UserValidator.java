@@ -20,9 +20,19 @@ public class UserValidator implements Validator{
 		User user = (User)target;
 		String id = user.getId();
 		
-		if(id == null | "".equals(id.trim())) {
-			errors.rejectValue("id", "requied");
+		//에러저장소에 저장함 (id 필드에 required라는 에러코드를 저장)
+//		if (id == null | "".equals(id.trim())) {
+//			errors.rejectValue("id", "required");
+//		}
+		
+		//비었거나 공백이면 id라는 변수에 required라는 에러코드를 저장
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "id", "required");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "pwd", "required");
+		
+		if(id == null || id.length() < 5 || id.length() > 12) {
+			errors.rejectValue("id", "invaildLength", new String[] {"5", "12"} , null);
 		}
+		
 	}
 
 }
