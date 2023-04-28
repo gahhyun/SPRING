@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">			
+ <!-- 3번째  -->  
+<mapper namespace="com.earth.heart.dao.BoardMapper">	
+	
+	 <select id="select" parameterType="int" resultType="BoardDto">
+	 	SELECT bno, title, content, writer, view_cnt, comment_cnt, reg_date, up_date
+		FROM t_board
+	 </select>
+	 
+	 <delete id="deleteAll">
+	 	delete from t_board
+	 </delete>
+	 <!-- <typeAlias type="com.earth.heart.domain.BoardDTO" alias="BoardDto"/> -->
+	 <delete id="insert" parameterType="BoardDto"> 
+	 	INSERT INTO t_board (title, content, writer) VALUES(#{title}, #{content}, #{writer});
+	 </delete>
+</mapper>
