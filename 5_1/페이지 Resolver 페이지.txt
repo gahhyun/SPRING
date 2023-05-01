@@ -1,0 +1,4 @@
+﻿5/1 게시판 목록 페이지
+
+Resolver페이지 이해하기
+https://velog.io/@hsjung2015/Resolver%EB%9E%80-%EB%AC%B4%EC%97%87%EC%9D%B8%EA%B0%80
