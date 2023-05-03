@@ -2,96 +2,85 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  			
- <!-- 3번째  -->  
- 
- <!-- CRUD 는 다똑같이서 패키지를 사용해서 mapper로 해서 작성한다 
- 		여기서 많이 에러가남 타입을 잘 맞춰줘야 한다-->
- 
-<mapper namespace="com.earth.heart.dao.BoardMapper">	
-	
-	<sql id="selectfromBoard">
-	 	SELECT bno, title, content, writer, view_cnt, comment_cnt, reg_date, up_date
+
+<mapper namespace="com.earth.korea.dao.BoardMapper">
+	<sql id="selectFromBoard">
+		SELECT bno, title, content, writer, view_cnt, comment_cnt, reg_date
 		FROM t_board	
 	</sql>
+
+	<select id="select" parameterType="int" resultType="BoardDto">
+		<include refid="selectFromBoard" />
+		where bno = #{bno}		
+	</select>
 	
-	 <select id="select" parameterType="int" resultType="BoardDto">		<!-- resultType="BoardDto"은 mybatis-config.xm에서 정의함 dao에서 정의한것이랑 같아야함-->
-		<include refid="selectfromBoard"/>
-		where bno = #{bno}
-	 </select>
-	 
-	 
-	 <select id="selectAll" resultType="BoardDto">
-		<include refid="selectfromBoard"/>
-		order by reg_date desc , bno desc
-	 </select>
-	 
-	 
-	 <select id="selectPage" parameterType="map" resultType="BoardDto">
-	 	<include refid="selectfromBoard"/>
-	 	order by reg_date desc , bno desc
-	 	limit #{pageSize} offset #{offset}
-	 </select>
-	 
-	 
-	 <delete id="deleteAll">
-	 	delete from t_board
-	 </delete>
-	 
-	 
-	 <delete id="delete" parameterType="map" > <!-- 몇bno에 어떤writer인지 map으로 묶어서 작성  -->
-	 	delete from t_board 
-		where bno = #{bno} and writer = #{writer}
-	 </delete>
-	 
-	 
-	 <delete id="deleteForAdmin">
-	 	delete from t_board where bno = #{bno}
-	 </delete>
-	 
-	 
-	 <!-- <typeAlias type="com.earth.heart.domain.BoardDTO" alias="BoardDto"/> -->
-	 <insert id="insert" parameterType="BoardDto"> 
-	 	INSERT INTO t_board (title, content, writer) VALUES(#{title}, #{content}, #{writer});
-	 </insert>
-	 
-	 
-	 <select id="count" resultType="int">
-	 	select count(*) from t_board
-	 </select>
-	 
+	<select id="selectAll" resultType="BoardDto">
+ 		<include refid="selectFromBoard" />
+		order by reg_date desc, bno desc	
+	</select>
+	
+	<select id="selectPage" parameterType="map" resultType="BoardDto">
+		<include refid="selectFromBoard" />
+		order by reg_date desc, bno desc
+		limit #{pageSize} offset #{offset}
+	</select>	
+	
+	<select id="searchResultCnt" parameterType="SearchItem" resultType="int">
+		select count(*) 
+		from t_board
+		where true 	
+		<include refid="searchCondition" />	
+	</select>
+	
+	<select id="searchSelectPage" parameterType="SearchItem" resultType="BoardDto">
+		<include refid="selectFromBoard" />
+		where true 
+		<include refid="searchCondition" />	
+		order by reg_date desc, bno desc
+		limit #{pageSize} offset #{offset}	
+	</select>
+	
+	<sql id="searchCondition">
+	
+	</sql>
 
-	 <update id="update" parameterType="BoardDto">
-	 	UPDATE public.t_board
-		SET title=#{title}, content=#{content}, up_date=now() 
-		WHERE bno=#{bno} and writer = #{writer}	<!-- 본인이 작성한 것만 삭제할 수 있게 writer의 조건을 같이 준다 -->
-	 </update>
-	 
-	 
-	 <update id="increaseViewCnt" parameterType="int" >
-	 	update t_board 
-		set view_cnt = view_cnt +1
-		where  bno = #{bno}
-	 </update>
-	 
-	 
-</mapper>
+	<delete id="deleteAll">
+		delete from t_board
+	</delete>
+	
+	<delete id="delete" parameterType="map">
+		delete from t_board 
+		where bno = #{bno} and writer = #{writer}	
+	</delete>
+	
+	<delete id="deleteForAdmin">
+		delete from t_board where bno = #{bno}
+	</delete>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+	<insert id="insert" parameterType="BoardDto">
+		INSERT INTO t_board (title, content, writer)
+		VALUES(#{title},#{content} ,#{writer})
+	</insert>
+	
+	<select id="count" resultType="int">
+		select count(*) from t_board
+	</select>
+	
+	<update id="update" parameterType="BoardDto">
+		UPDATE t_board
+		SET title=#{title}, content=#{content}, up_date=now()
+		WHERE bno=#{bno} and writer = #{writer}	
+	</update>
+	
+	<update id="increaseViewCnt" parameterType="int">
+		update t_board 
+		set view_cnt = view_cnt + 1
+		where bno = #{bno}	
+	</update>
+	
+	
+	
+</mapper>  
 
 
 
