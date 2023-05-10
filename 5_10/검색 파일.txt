@@ -1,0 +1,37 @@
+﻿<검색기능>
+mapper
+
+	<select id="searchSelectPage" parameterType="SearchItem" resultType="BoardDto">
+		<include refid="selectFromBoard" />
+		where true 
+		<include refid="searchCondition" />	
+		order by reg_date desc, bno desc
+		limit #{pageSize} offset #{offset}
+	</select>
+	
+	<sql id="searchCondition">
+		<choose>
+			<when test='option=="T"'>
+				AND title LIKE concat('%', #{keyword}, '%')
+			</when>
+			<when test='option=="W"'>
+				AND writer LIKE concat('%', #{keyword}, '%')
+			</when>
+			<otherwise>
+				AND (title LIKE concat('%', #{keyword}, '%') OR content LIKE concat('%', #{keyword}, '%'))
+			</otherwise>
+		</choose>
+	</sql>
+
+
+jsp
+
+    			<form action="<c:url value='/board/list' />" class="search-form" method="get">
+    				<select class="search-option" name="option">
+    					<option value="A" ${pr.sc.option=='A' || pr.sc.option=='' ? "selected" : "" }>제목+내용</option>
+    					<option value="T" ${pr.sc.option=='T' ? "selected" : "" }>제목</option>
+    					<option value="W" ${pr.sc.option=='W' ? "selected" : "" }>작성자</option>
+    				</select>
+    				<input type="text" name="keyword" class="search-input" value="${param.keyword}" placeholder="검색어를 입력해주세요">
+    				<input type="submit" value="검색" class="search-button">
+    			</form>

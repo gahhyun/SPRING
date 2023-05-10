@@ -1,0 +1,105 @@
+1. 게시물 목록과 페이징 처리
+    1) 용어 (변수)
+        - page size
+        - navi size
+        - begin page
+        - end page
+        - page(현재)
+
+        - offset
+            -게시물 맨 처음부터 얼마나 떨어져 있는지 나타내는 수
+                -page               offset
+                ----------------------------
+                  1                   0
+                  2                   10
+                  3                   20
+                  4                   30
+                  
+        - row_count
+            -(앞으로) 읽어올 row의 수
+
+
+2. URI 정의
+                  URI                             HTTP 메서드
+    1) 읽기     /board/read?bno=번호(pk)             GET     지정된 번호의 게시물을 보여줌(DTO)
+    2) 삭제     /board/remove                        POST    게시물 삭제
+
+    3) 쓰기     /board/write                         GET     게시물 작성할 빈화면 보여줌
+                /board/write                         POST    작성한 게시물 저장
+    4) 수정     /board/modify?bno=번호               GET      게시물 수정하기 위해 읽어옴
+                /board/modify                        POST     수젇된 게시물 저장
+
+
+
+3. 동적 SQL문
+    1) 공통 SQL문에 대해 조건값의 유무에 따라 동적으로 공통 SQL문에 조건절을 추가
+
+    2) 특징 
+        -주로 SQL문의 조건절에서 사용
+        -조건절(where)에 조건을 동적으로 추가
+        -JSTL과 XML기반으로 동적 SQL문을 작성
+
+    3) <if> 태그 사용법
+        <where>
+            <if test="조건식">
+                추가할 구문
+            </if>
+        </where>
+
+
+    4) <choose> 태그 사용법
+        <choose>
+            <when test="조건식1">
+                구문1
+            </when>
+            <when test="조건식2">
+                구문2
+            </when>
+            ...
+            <otherwise>
+                구문n
+            </otherwise>
+        </choose>
+
+
+    5) <foreach> 대크 사용법
+        <foreach item=""  collection=""  index=""  open="{"  close="}"  seperator="" >
+
+        </foreach>
+
+        예)
+        <foreach item="item"  collection="list"  index="index"  open="{"  close="}"  seperator="," >
+            #{item}
+        </foreach>
+
+
+
+        -collection
+            -배열과 List 계열
+            -array, list 표시함
+        
+        -item
+            -반복문이 실행될 때마다 collection 속성에 지정된 값에 접근하여 차례대로 사용함
+
+        -index
+            -foreach문 반복될 때마다 1씩 증가시키면서 접근하는 값의 위치를 나타냄
+            -최초 값 위치는 0임 
+
+        -open
+            -해당 구문이 시작될 때 지정한 기호
+
+        -close
+            -해당 구문이 끝날 때 지정한 기호
+
+        -seperator
+            -한번 이상 반복될 때 반복되는 사이에 지정한 기호를 추가
+
+
+
+4. 기능 구현 순서
+    1) DB 테이블 생성
+    2) Mapper.xml 작성
+    3) DAO 작성 & 테스트
+    4) Service 작성 & 테스트
+    5) Controller 작성 & 테스트
+    6) View(UI) 작성 & 테스트

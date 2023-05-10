@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  
+<mapper namespace="com.earth.korea.dao.CommentMapper">
+	
+	<select id="selectAll" parameterType="int" resultType="CommentDto">		<!-- mybatis-config.xm  alias="CommentDto" -->
+		SELECT cno, bno, pcno, comment, commenter, reg_date, up_date
+		FROM t_comment
+		where bno = #{bno}
+		order by reg_date , cno 
+	</select>
+
+
+	<delete id="deleteAll" parameterType="int">
+		DELETE FROM t_comment 
+		WHERE bno = #{bno}
+	</delete>
+	
+	<delete id="delete" parameterType="map">
+		DELETE FROM t_comment 
+		WHERE cno = #{cno} and commenter = #{commenter}
+	</delete>
+
+
+
+	<insert id="insert" parameterType="CommentDto">
+		INSERT INTO t_comment(bno, pcno, comment, commenter, reg_date, up_date)
+		VALUES(#{bno}, #{pcno}, #{comment},#{commenter}, now(), now());
+	</insert>
+
+
+	
+	<update id="update" parameterType="CommentDto">
+		UPDATE t_comment
+		SET comment=#{comment},  up_date=now()
+		where cno = #{cno} and commenter = #{commenter}
+	</update>
+
+</mapper>
