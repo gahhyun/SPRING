@@ -5,6 +5,12 @@
   
   
 <mapper namespace="com.earth.korea.dao.CommentMapper">
+
+	
+	<select id="count" parameterType="int" resultType="int">
+		select count(*) from t_comment
+		where bno = #{bno}
+	</select>
 	
 	<select id="selectAll" parameterType="int" resultType="CommentDto">		<!-- mybatis-config.xm  alias="CommentDto" -->
 		SELECT cno, bno, pcno, comment, commenter, reg_date, up_date

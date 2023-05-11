@@ -6,7 +6,7 @@ import com.earth.korea.domain.CommentDTO;
 
 public interface CommentDao {
 	
-	int delete(Integer bno) throws Exception;
+	int deleteAll(Integer bno) throws Exception;
 	int delete(Integer cno, String commenter) throws Exception;
 	
 	List<CommentDTO> selectAll(Integer bno) throws Exception;
@@ -16,7 +16,6 @@ public interface CommentDao {
 	int update(CommentDTO commentDTO) throws Exception;
 	
 	
-	
-	
+	int count(Integer bno) throws Exception;
 
 }

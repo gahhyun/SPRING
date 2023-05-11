@@ -30,7 +30,10 @@ public class RestfulController {
 	}
 	
 	
-	
+	@GetMapping("/test")
+	public String test() {
+		return "test";
+	}
 	
 	
 	
